@@ -2,9 +2,12 @@
 
 import { useMemo } from 'react';
 import { useInitData, useLaunchParams, type User } from '@telegram-apps/sdk-react';
-import { List, Placeholder } from '@telegram-apps/telegram-ui';
+import { Button, Cell, Image, List, Placeholder } from '@telegram-apps/telegram-ui';
+import { Link } from '@/components/Link/Link';
 
 import { DisplayData, type DisplayDataRow } from '@/components/DisplayData/DisplayData';
+
+import backArrowSvg from '../_assets/back-arrow.svg';
 
 function getUserRows(user: User): DisplayDataRow[] {
   return [
@@ -92,6 +95,14 @@ export default function InitDataPage() {
   }
   return (
     <List>
+      <Link href='../'>
+        <Cell
+            before={<Image src={backArrowSvg.src} style={{ backgroundColor: '#007AFF' }}/>}
+            subtitle='Return to previous page'>
+            Back
+          </Cell>
+      </Link>
+
       <DisplayData header={'Init Data'} rows={initDataRows}/>
       {userRows && <DisplayData header={'User'} rows={userRows}/>}
       {receiverRows && <DisplayData header={'Receiver'} rows={receiverRows}/>}
