@@ -1,14 +1,36 @@
 'use client';
 
-import { Section, Cell, Image, List } from '@telegram-apps/telegram-ui';
+import { Section, Cell, Image, List, Button } from '@telegram-apps/telegram-ui';
+import { postEvent  } from '@telegram-apps/sdk-react';
 
 import { Link } from '@/components/Link/Link';
 
 import tonSvg from './_assets/ton.svg';
 
 export default function Home() {
+
+  function showPopup() {
+    //alert('You clicked me!');
+    console.log('Button clicked; showPopup');
+
+    postEvent('web_app_open_popup', { 
+      title: "", 
+      message: "",
+      buttons: [
+        {
+          type: 'ok',
+          id:"1"
+        }
+      ]
+  
+    });
+  }
+
   return (
     <List>
+      <Button onClick={showPopup}>
+        Click me
+      </Button>
       <Section
         header='Features'
         footer='You can use these pages to learn more about features, provided by Telegram Mini Apps and other useful projects'
